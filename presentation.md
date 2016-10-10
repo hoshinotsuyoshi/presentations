@@ -28,7 +28,7 @@
 # ECS is...
 
 
-> You can run anything: applications, batch jobs, or microservices.
+❝ You can run anything: applications, batch jobs, or microservices. ❞
 - AWS _ Amazon EC2 Container Service _ Product Details
 
 ---
@@ -36,20 +36,20 @@
 # ECS is...
 
 
-> You can run anything: applications, **batch jobs**, or microservices.
+❝ You can run anything: applications, **batch jobs**, or microservices. ❞
 - AWS _ Amazon EC2 Container Service _ Product Details
 
 ---
 
-# ECSでバッチ処理をやるには
+# ECSでバッチ処理するには
 
 ---
 
 # `$ aws ecs <subcommand>`
 
-* register-task-definition
+* `$ aws ecs register-task-definition`
     * TaskDefinitionの登録
-* run-task
+* `$ aws ecs run-task`
     * Taskを実行
 
 ---
@@ -62,7 +62,7 @@
 
 ---
 
-![fit](https://cloud.githubusercontent.com/assets/1394049/19222122/29630a3e-8e8c-11e6-8cf7-d448c6c726ce.png)
+![fit](https://cloud.githubusercontent.com/assets/1394049/19253350/84c91b80-8f85-11e6-919f-9d575e7cee7c.png)
 
 ---
 
@@ -70,27 +70,29 @@
 
 ---
 
-# 「hako良さそう」
+# 「hakoのoneshot良さそう」
 
 ---
-
-# hako
 
 ![fit](https://cloud.githubusercontent.com/assets/1394049/19217044/ba3c473c-8e0f-11e6-998b-438d7d56d212.png)
 
 ---
 
-# `$ hako oneshot` :gun: とは
+# `$ hako oneshot` :gun: 
 
-> `hako oneshot` はYAML の定義に従って ECS の RunTask API を呼び出すコマンド
+❝ `hako oneshot` はYAML の定義に従って ECS の RunTask API を呼び出すコマンド ❞
 - ECS を利用したオフラインジョブの実行環境 - クックパッド開発者ブログ
 - http://techlife.cookpad.com/entry/2016/09/09/235007
 
 ---
 
-# `$ hako oneshot`
+# `$ hako oneshot`:gun:
 
 面倒見てくれる + α :tada:
+
+---
+
+![fit](https://cloud.githubusercontent.com/assets/1394049/19253350/84c91b80-8f85-11e6-919f-9d575e7cee7c.png)
 
 ---
 
@@ -102,17 +104,23 @@
 
 ---
 
-# リソースが足りないときの自動scale out :tada:
+# 自動scale out :tada:
 
+* リソースが足りないときの自動scale out
 * `autoscaling_group_for_oneshot` を指定すればおｋ
-* increments by **1**
+    * 例) ![inline 150%](https://cloud.githubusercontent.com/assets/1394049/19253505/73245e52-8f86-11e6-956f-489b072acdf8.png)
+* リソースが足りない場合はdesiredが **1** 増える
 
 ---
 
 # まとめ
 
 * hako oneshot :gun: を使うことにより
-    * コードを書く必要が減った
+    * ECS API叩く自前コードが減った
     * 余分なTaskDefinition登録が減った
     * 自動scale outも面倒見てくれる
-* ドキュメントはまだ無いっぽいけどECSのAPI使った事ある人ならわかりそう
+
+---
+
+![fit](https://cloud.githubusercontent.com/assets/1394049/19222122/29630a3e-8e8c-11e6-8cf7-d448c6c726ce.png)
+
