@@ -1,4 +1,4 @@
-# バッチ処理でhakoを使おうとしている話
+# バッチ処理でhakoを使う話
 
 ---
 
@@ -51,27 +51,14 @@
     * TaskDefinitionの登録
 * run-task
     * Taskを実行
-* describe-tasks
-    * Taskのステータスを得る
 
 ---
 
-# 3つを反映した図
-
----
-
-![fit](https://cloud.githubusercontent.com/assets/1394049/19222122/29630a3e-8e8c-11e6-8cf7-d448c6c726ce.png)
-
----
-
-# 他。。
+# 他考えること。。
 
 * オートスケーリングさせなきゃね
-* (タスク定義が無限に増えていく。。。)
-
----
-
-# タスク定義が無限に増えていく。。。
+* (TaskDefinitionが無限に増えていく。。。)
+    * アプリのデプロイのたびにTaskDefinition登録してた
 
 ---
 
@@ -83,7 +70,7 @@
 
 ---
 
-# hakoを使う
+# 「hako良さそう」
 
 ---
 
@@ -93,7 +80,7 @@
 
 ---
 
-# `$ hako oneshot` :gun:
+# `$ hako oneshot` :gun: とは
 
 > `hako oneshot` はYAML の定義に従って ECS の RunTask API を呼び出すコマンド
 - ECS を利用したオフラインジョブの実行環境 - クックパッド開発者ブログ
@@ -103,25 +90,29 @@
 
 # `$ hako oneshot`
 
-wraps :tada:
+面倒見てくれる + α :tada:
 
 ---
 
-# AutoScaling
+# TaskDefinitionが増えづらい :tada:
 
-increments by 1
+* 余分なTaskDefinitionを登録しない仕組みがある
+    * たまに登録されちゃうパターンがある
+        * ソース読んで直したり、yamlの書き方で回避する
 
-`autoscaling_group_for_oneshot`
+---
+
+# リソースが足りないときの自動scale out :tada:
+
+* `autoscaling_group_for_oneshot` を指定すればおｋ
+* increments by **1**
 
 ---
 
 # まとめ
 
-* hako oneshotを使うことにより
+* hako oneshot :gun: を使うことにより
     * コードを書く必要が減った
     * 余分なTaskDefinition登録が減った
-    * AutoScalingも面倒見てくれる
+    * 自動scale outも面倒見てくれる
 * ドキュメントはまだ無いっぽいけどECSのAPI使った事ある人ならわかりそう
-
-
-
