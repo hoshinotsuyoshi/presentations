@@ -1,76 +1,68 @@
 # バッチ処理でhakoを使う話
 
----
+### ![fit](https://emoji.slack-edge.com/T02DQ8HS2/github/16e2e1324585a8f8.png) @hoshinotsuyoshi / feedforce.Inc.
 
-# 私
-
-* :github: hoshinotsuyoshi
-* :facebook: tsuyoshi.hoshino
-* :twitter: hoppiestar
-
-* Interested in docker, ruby
-* feedforce.Inc.
+### 2016/10/12
 
 ---
 
-# バッチ処理
+# Me
 
-* cron
-   * 高可用性を得るのが難しい
+* ![fit](https://emoji.slack-edge.com/T02DQ8HS2/github/16e2e1324585a8f8.png) @hoshinotsuyoshi
+* ![15%](http://pix.iemoji.com/images/emoji/apple/ios-9/256/green-heart.png) ![90%](https://emoji.slack-edge.com/T02DQ8HS2/docker2/2afb50947218a8ac.jpg)
+* ![15%](http://pix.iemoji.com/images/emoji/apple/ios-9/256/green-heart.png) ![40%](https://emoji.slack-edge.com/T02DQ8HS2/ruby/0fb603f6e739e0fe.png)
+* 2014〜 feedforce.Inc.
+
+---
+
+# バッチ処理 :clock1:
+
+* cronだと
+   * 高い可用性を得るのが難しい
    * リソースに応じたスケジューリングが難しい
 
 ---
 
-# ECSや!
+# ECS
+
+![fit](https://img.stackshare.io/service/1908/amazon-ecs.png)
 
 ---
 
-# ECS is...
 
+# EC2 Container Service Product Details
 
-❝ You can run anything: applications, batch jobs, or microservices. ❞
-- AWS _ Amazon EC2 Container Service _ Product Details
-
----
-
-# ECS is...
-
+![fit](https://img.stackshare.io/service/1908/amazon-ecs.png)
 
 ❝ You can run anything: applications, **batch jobs**, or microservices. ❞
-- AWS _ Amazon EC2 Container Service _ Product Details
 
 ---
 
 # ECSでバッチ処理するには
 
----
-
-# `$ aws ecs <subcommand>`
-
-* `$ aws ecs register-task-definition`
-    * TaskDefinitionの登録
-* `$ aws ecs run-task`
-    * Taskを実行
+1. TaskDefinitionの登録して
+   * `$ aws ecs register-task-definition`
+2. Taskを実行する！
+   * `$ aws ecs run-task`
+3. 以上！(基本的には)
 
 ---
 
-# 他考えること。。
+# その他の問題
 
-* オートスケーリングさせなきゃね
-* (TaskDefinitionが無限に増えていく。。。)
-    * アプリのデプロイのたびにTaskDefinition登録してた
-
----
-
-![fit](https://cloud.githubusercontent.com/assets/1394049/19253350/84c91b80-8f85-11e6-919f-9d575e7cee7c.png)
+* オートスケーリングさせなきゃ… :cry:
+* TaskDefinitionが際限なく増加してく… :cry:
+    * デプロイのたびにTaskDefinition登録してた
+    * 登録済みかどうかのチェックがだるい
+* …
 
 ---
 
-# ふう :cry:
+## 2016年9月
 
 ---
 
-# 「hakoのoneshot良さそう」
+## ?「hakoのoneshot :gun: 良さそう」
 
 ---
 
@@ -78,29 +70,56 @@
 
 ---
 
-# `$ hako oneshot` :gun: 
+# `$ hako oneshot` :gun:
 
 ❝ `hako oneshot` はYAML の定義に従って ECS の RunTask API を呼び出すコマンド ❞
-- ECS を利用したオフラインジョブの実行環境 - クックパッド開発者ブログ
-- http://techlife.cookpad.com/entry/2016/09/09/235007
+####- ECS を利用したオフラインジョブの実行環境 - クックパッド開発者ブログ
 
 ---
 
-# `$ hako oneshot`:gun:
-
-面倒見てくれる + α :tada:
+# `$ hako oneshot` :gun:
+　
+読んでみると色々と面倒を見てくれることがわかった
 
 ---
 
-![fit](https://cloud.githubusercontent.com/assets/1394049/19253350/84c91b80-8f85-11e6-919f-9d575e7cee7c.png)
+# こんなかんじになった
+
+---
+
+# 図
+
+---
+
+# こんなかんじのことをやってる
+
+---
+
+![fit](https://cloud.githubusercontent.com/assets/1394049/19270761/8e17a400-8ffc-11e6-9ce8-d5bcea6fb781.png)
+
+---
+
+![fit](https://cloud.githubusercontent.com/assets/1394049/19270692/3c60dafa-8ffc-11e6-9522-07ce9949c2d0.png)
+
+---
+
+![fit](https://cloud.githubusercontent.com/assets/1394049/19270697/402f275e-8ffc-11e6-93b0-289079066c49.png)
+
+---
+
+![fit](https://cloud.githubusercontent.com/assets/1394049/19270701/43fdb9b8-8ffc-11e6-9e1b-baa574e8c499.png)
+
+---
+
+![fit](https://cloud.githubusercontent.com/assets/1394049/19270704/4733cb18-8ffc-11e6-9add-3f3f4b1cfd5e.png)
 
 ---
 
 # TaskDefinitionが増えづらい :tada:
 
-* 余分なTaskDefinitionを登録しない仕組みがある
-    * たまに登録されちゃうパターンがある
-        * ソース読んで直したり、yamlの書き方で回避する
+* TaskDefinitionを重複登録しない仕組みがある
+    * (たまに登録されちゃうパターンがある)
+        * (ソース読んで直したり、yamlの書き方で回避する)
 
 ---
 
@@ -108,19 +127,34 @@
 
 * リソースが足りないときの自動scale out
 * `autoscaling_group_for_oneshot` を指定すればおｋ
-    * 例) ![inline 150%](https://cloud.githubusercontent.com/assets/1394049/19253505/73245e52-8f86-11e6-956f-489b072acdf8.png)
+    * yaml例) ![inline 150%](https://cloud.githubusercontent.com/assets/1394049/19270958/93e1f330-8ffd-11e6-8165-4cbb2191e057.png)
 * リソースが足りない場合はdesiredが **1** 増える
+    * この 1 はハードコード
 
 ---
 
 # まとめ
 
 * hako oneshot :gun: を使うことにより
-    * ECS API叩く自前コードが減った
     * 余分なTaskDefinition登録が減った
     * 自動scale outも面倒見てくれる
+    * ECS API叩く**自前コードが減った**
 
 ---
 
-![fit](https://cloud.githubusercontent.com/assets/1394049/19222122/29630a3e-8e8c-11e6-8cf7-d448c6c726ce.png)
+### 参考文献
+
+- AWS _ Amazon EC2 Container Service _ Product Details
+  - https://aws.amazon.com/ecs/details/?nc1=h_ls
+- eagletmt/hako
+  - https://github.com/eagletmt/hako
+
+---
+
+### 参考文献
+
+- ECS を利用したオフラインジョブの実行環境 - クックパッド開発者ブログ
+  - http://techlife.cookpad.com/entry/2016/09/09/235007
+
+---
 
