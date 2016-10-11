@@ -77,25 +77,19 @@
 
 ---
 
-# `$ hako oneshot` :gun:
-　
-読んでみると色々と面倒を見てくれることがわかった
-
----
-
 # こんなかんじになった
 
 ---
 
-# 図
+![fit](https://cloud.githubusercontent.com/assets/1394049/19277616/44cb1700-9015-11e6-920f-e9a893b490e8.png)
 
 ---
 
-# こんなかんじのことをやってる
+# :gun: の中身
 
 ---
 
-![fit](https://cloud.githubusercontent.com/assets/1394049/19270761/8e17a400-8ffc-11e6-9ce8-d5bcea6fb781.png)
+![fit](https://cloud.githubusercontent.com/assets/1394049/19277839/20f2cbc4-9016-11e6-8a32-955d1aa245a8.png)
 
 ---
 
@@ -115,7 +109,7 @@
 
 ---
 
-# TaskDefinitionが増えづらい :tada:
+# :gun: TaskDefinitionが増えづらい :tada:
 
 * TaskDefinitionを重複登録しない仕組みがある
     * (たまに登録されちゃうパターンがある)
@@ -123,13 +117,13 @@
 
 ---
 
-# 自動scale out :tada:
+# :gun: 自動scale out :tada:
 
 * リソースが足りないときの自動scale out
 * `autoscaling_group_for_oneshot` を指定すればおｋ
     * yaml例) ![inline 150%](https://cloud.githubusercontent.com/assets/1394049/19270958/93e1f330-8ffd-11e6-8165-4cbb2191e057.png)
 * リソースが足りない場合はdesiredが **1** 増える
-    * この 1 はハードコード
+    * この **1** はハードコード
 
 ---
 
@@ -155,6 +149,4 @@
 
 - ECS を利用したオフラインジョブの実行環境 - クックパッド開発者ブログ
   - http://techlife.cookpad.com/entry/2016/09/09/235007
-
----
 
