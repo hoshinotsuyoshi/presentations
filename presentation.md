@@ -4,14 +4,24 @@
 
 ### 2016/10/12
 
+^
+「バッチ処理でhakoを使う話」というタイトルで
+ほしのつよしが発表いたします。
+
 ---
 
 # Me
 
 * ![fit](https://emoji.slack-edge.com/T02DQ8HS2/github/16e2e1324585a8f8.png) @hoshinotsuyoshi
+* ![fit](https://emoji.slack-edge.com/T02DQ8HS2/github/16e2e1324585a8f8.png) @hoshinotsuyoshi
 * ![15%](http://pix.iemoji.com/images/emoji/apple/ios-9/256/green-heart.png) ![90%](https://emoji.slack-edge.com/T02DQ8HS2/docker2/2afb50947218a8ac.jpg)
 * ![15%](http://pix.iemoji.com/images/emoji/apple/ios-9/256/green-heart.png) ![40%](https://emoji.slack-edge.com/T02DQ8HS2/ruby/0fb603f6e739e0fe.png)
 * 2014〜 feedforce Inc.
+
+^
+ほしのつよしと申します。
+フィードフォースという会社でエンジニアをやっています。
+dockerとかrubyとかが好きです。
 
 ---
 
@@ -21,11 +31,18 @@
    * 高い可用性を得るのが難しい
    * リソースに応じたスケジューリングが難しい
 
+^
+今回のテーマはバッチ処理なんですが、
+皆さんご存知のcronだとこういう問題があります。
+
 ---
 
 # ECS
 
 ![fit](https://img.stackshare.io/service/1908/amazon-ecs.png)
+
+^
+そこでECSなんですが
 
 ---
 
@@ -35,6 +52,10 @@
 ![fit](https://img.stackshare.io/service/1908/amazon-ecs.png)
 
 ❝ You can run anything: applications, **batch jobs**, or microservices. ❞
+
+^
+ECSってバッチ処理できるの？と思われる方もいらっしゃるかもしれないですが、
+このとおり、公式にできるって書いてあります。
 
 ---
 
@@ -46,6 +67,12 @@
    * `$ aws ecs run-task`
 3. 以上！(基本的には)
 
+^
+で、ECSでバッチ処理するには。
+まずTaskDefinitionというタスク定義を定義して、
+Taskを実行する`run-task`というAPIを叩くことになります。
+で、これで以上、なんですが、
+
 ---
 
 # その他の問題
@@ -56,17 +83,38 @@
     * 登録済みかどうかのチェックがだるい
 * …
 
+^
+インスタンスが忙しくなってきたら、さすがにオートスケーリングさせなきゃ、とか、
+TaskDefinitionが無限に増える問題とかがあります。
+私のチームではTaskDefinitionをymlで表現して
+デプロイのときにそれを登録する、ということをしていました。
+みなさんTaskDefinitionってどうされているんでしょうか。
+増えまくってもぶっちゃけ気にしないという感じでしょうか。
+
 ---
 
 ## 2016年9月
+
+![fit](http://1.bp.blogspot.com/-RJRt_Hv37Kk/VMIu-CCBpII/AAAAAAAAq2E/JsIJ8pPwmuY/s800/calender_takujou.png)
+
+^
+で最近いいツールが出ました。
 
 ---
 
 ## ?「hakoのoneshot :gun: 良さそう」
 
+^
+チームのメンバーにhakoのoneshot良さそうですよ、って教えてもらいました。
+
 ---
 
 ![fit](https://cloud.githubusercontent.com/assets/1394049/19217044/ba3c473c-8e0f-11e6-998b-438d7d56d212.png)
+
+^
+hako っていうのはDocker Containerのdeployツールで、
+クックパッドの中で使われているツールとのことです。
+rubygemsで公開されています。
 
 ---
 
@@ -74,6 +122,9 @@
 
 ❝ `hako oneshot` はYAML の定義に従って ECS の RunTask API を呼び出すコマンド ❞
 ####- ECS を利用したオフラインジョブの実行環境 - クックパッド開発者ブログ
+
+^
+で、hako oneshotっていうのは
 
 ---
 
@@ -112,7 +163,7 @@
 # :gun: TaskDefinitionが増えづらい :tada:
 
 * TaskDefinitionを重複登録しない仕組みがある
-    * (たまに登録されちゃうパターンがある)
+    * (たまに登録されちゃうパターンがあるｹﾄﾞ)
         * (ソース読んで直したり、yamlの書き方で回避する)
 
 ---
@@ -121,7 +172,7 @@
 
 * リソースが足りないときの自動scale out
 * `autoscaling_group_for_oneshot` を指定すればおｋ
-    * yaml例) ![inline 150%](https://cloud.githubusercontent.com/assets/1394049/19270958/93e1f330-8ffd-11e6-8165-4cbb2191e057.png)
+    * 設定例) ![inline 150%](https://cloud.githubusercontent.com/assets/1394049/19270958/93e1f330-8ffd-11e6-8165-4cbb2191e057.png)
 * リソースが足りない場合はdesiredが **1** 増える
     * この **1** はハードコード
 
