@@ -10,10 +10,10 @@
 
 ---
 
-# Me
+# Me ![fit](https://qiita-image-store.s3.amazonaws.com/0/30715/profile-images/1473685544)
 
 * ![fit](https://emoji.slack-edge.com/T02DQ8HS2/github/16e2e1324585a8f8.png) @hoshinotsuyoshi
-* ![fit](https://emoji.slack-edge.com/T02DQ8HS2/github/16e2e1324585a8f8.png) @hoshinotsuyoshi
+* ![fit](https://blog.st-hatena.com/images/common/meta-icon-global.png) http://hoppie.hatenablog.com/
 * ![15%](http://pix.iemoji.com/images/emoji/apple/ios-9/256/green-heart.png) ![90%](https://emoji.slack-edge.com/T02DQ8HS2/docker2/2afb50947218a8ac.jpg)
 * ![15%](http://pix.iemoji.com/images/emoji/apple/ios-9/256/green-heart.png) ![40%](https://emoji.slack-edge.com/T02DQ8HS2/ruby/0fb603f6e739e0fe.png)
 * 2014〜 feedforce Inc.
@@ -22,6 +22,7 @@
 ほしのつよしと申します。
 フィードフォースという会社でエンジニアをやっています。
 dockerとかrubyとかが好きです。
+ブログも書いたりしています。
 
 ---
 
@@ -33,7 +34,9 @@ dockerとかrubyとかが好きです。
 
 ^
 今回のテーマはバッチ処理なんですが、
-皆さんご存知のcronだとこういう問題があります。
+皆さんご存知のcronだと、こういう問題があると思います。
+可用性とか冗長性とか。
+1台のインスタンスにcrontab登録すると、そのインスタンスが死んだときに困ってしまいます。
 
 ---
 
@@ -54,8 +57,8 @@ dockerとかrubyとかが好きです。
 ❝ You can run anything: applications, **batch jobs**, or microservices. ❞
 
 ^
-ECSってバッチ処理できるの？と思われる方もいらっしゃるかもしれないですが、
-このとおり、公式にできるって書いてあります。
+まずECSってバッチ処理できるの？と思われる方もいらっしゃるかもしれないですが、
+このとおり、公式にできるよって書いてあります。
 
 ---
 
@@ -90,6 +93,7 @@ TaskDefinitionが無限に増える問題とかがあります。
 デプロイのときにそれを登録する、ということをしていました。
 みなさんTaskDefinitionってどうされているんでしょうか。
 増えまくってもぶっちゃけ気にしないという感じでしょうか。
+あとで聞きたいです
 
 ---
 
@@ -98,7 +102,8 @@ TaskDefinitionが無限に増える問題とかがあります。
 ![fit](http://1.bp.blogspot.com/-RJRt_Hv37Kk/VMIu-CCBpII/AAAAAAAAq2E/JsIJ8pPwmuY/s800/calender_takujou.png)
 
 ^
-で最近いいツールが出ました。
+で、時は流れて。
+最近良さそうなツールが出ました。
 
 ---
 
@@ -124,15 +129,27 @@ rubygemsで公開されています。
 ####- ECS を利用したオフラインジョブの実行環境 - クックパッド開発者ブログ
 
 ^
-で、hako oneshotっていうのは
+で、サブコマンドの hako oneshotっていうのは、
+デーモンとかではなく1回きりのジョブの実行です。
+先程出てきたRunTask APIってやつを叩きます。
 
 ---
 
 # こんなかんじになった
 
+^
+で、早速ですがこれを採用したところこんな感じになりました
+
 ---
 
 ![fit](https://cloud.githubusercontent.com/assets/1394049/19277616/44cb1700-9015-11e6-920f-e9a893b490e8.png)
+
+^
+CloudWatchEventで定時にイベント発火し、
+lambdaでhako oneshotを叩きます。
+hako oneshotはlambdaで実行するには時間が長すぎるのでこれ用の
+ワーカーを用意します。
+hako oneshotがきっかけとなり、ジョブ自体はECSの別クラスタで動きます。
 
 ---
 
