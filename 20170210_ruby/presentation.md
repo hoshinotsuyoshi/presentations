@@ -2,7 +2,7 @@
 
 ### ![fit](https://cloud.githubusercontent.com/assets/1394049/22774579/21c4c0f0-eeeb-11e6-90c1-0043b95deac7.png) @hoshinotsuyoshi / feedforce Inc.
 
-### 2016/10/12
+### February 10, 2017
 
 ---
 
@@ -50,15 +50,7 @@ File.read('hoge.csv')
 
 ---
 
-http://text.ssig33.com/19
-
----
-
 # Black Magic
-
----
-
-http://www.slideshare.net/tmtm/ruby-3424591
 
 ---
 
@@ -66,7 +58,7 @@ http://www.slideshare.net/tmtm/ruby-3424591
 
 ---
 
-https://rubyinstaller.org/
+![](https://cloud.githubusercontent.com/assets/1394049/22774682/8e018758-eeeb-11e6-9364-b60af3fbb197.png)
 
 ---
 
@@ -79,16 +71,16 @@ https://rubyinstaller.org/
 * 2005- ケータイの白い犬の子会社
   * logistics
 * 2010- ケータイのキノコの子会社
-  * marketing 😆 <-
+  * marketing 😆
 * 2014- フィードフォース
 
 ---
 
-# the presentation is almost done
+# The presentation is almost done.
 
 ---
 
-# How can I express this feeling
+# How can I express this feeling...
 
 ---
 
@@ -136,10 +128,6 @@ NoMethodError: undefined method `<' for (-4+0i):Complex
 
 ---
 
-picture
-
----
-
 # Only 5 correct answers
 
 ---
@@ -152,22 +140,40 @@ picture
 
 ---
 
-# Pockemon or BigData
+![](https://cloud.githubusercontent.com/assets/1394049/22774808/20af05bc-eeec-11e6-8173-805c2de39ee9.png)
 
 ---
 
-# Rule
+![](https://cloud.githubusercontent.com/assets/1394049/22774823/28cad0d2-eeec-11e6-93c9-fe4953a80221.png)
 
 ---
 
-# truthy or falsy or error
+# Is it Pokemon or Big Data?
 
 ---
 
-# what is "truthy"?
+![](https://cloud.githubusercontent.com/assets/1394049/22774938/bb8214e4-eeec-11e6-89c0-98f8393188c2.png)
 
 ---
 
+![](https://cloud.githubusercontent.com/assets/1394049/22774943/c8690910-eeec-11e6-8eaf-2461f64a0cca.png)
+
+---
+
+
+# Today's Rule
+
+---
+
+# "truthy" or "falsy" or "error"
+
+---
+
+# What is "truthy"?
+
+---
+
+![](https://cloud.githubusercontent.com/assets/1394049/22775067/56176d74-eeed-11e6-98ba-11cef0371874.png)
 
 ---
 
@@ -175,13 +181,11 @@ picture
 
 ---
 
-![trinity](http://i.imgur.com/6BYGcfx.jpg)
-
-https://twitter.com/hsjoihs/status/792206474902515712
+![150% trinity](https://cloud.githubusercontent.com/assets/1394049/22776016/6af81244-eef1-11e6-9dc3-fcb71b93f9e8.jpg)
 
 ---
 
-# Don't worry.
+# Don't worry
 
 ---
 
@@ -195,20 +199,15 @@ https://twitter.com/hsjoihs/status/792206474902515712
 
 ---
 
-![trinity](http://i.imgur.com/6BYGcfx.jpg)
-
-https://twitter.com/hsjoihs/status/792206474902515712
+![150% trinity](https://cloud.githubusercontent.com/assets/1394049/22776016/6af81244-eef1-11e6-9dc3-fcb71b93f9e8.jpg)
 
 ---
 
-# Rule
-
----
+## Spec
 
 * Tested in hoshino's Mac.
   * macOS Sierra
-* Powered by rbenv
-  * https://github.com/rbenv/rbenv
+* Powered by rbenv(https://github.com/rbenv/rbenv)
 * $ ruby -v
   * ruby 2.4.0p0 (2016-12-24 revision 57164) [x86_64-darwin16]
 * $ irb -v
@@ -220,3 +219,10 @@ https://twitter.com/hsjoihs/status/792206474902515712
 
 `https://hoshinotsuyoshi.com/ruby_truthy_or_falsy`
 
+---
+
+# Conclusion
+
+* Ruby is difficult.
+* But ruby is fun.
+* JavaScript is difficult.
